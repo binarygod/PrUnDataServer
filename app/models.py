@@ -1,6 +1,9 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship, backref
-from database import Base
+from pydantic import BaseModel
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 
 def string_to_bool(string_value):
@@ -8,6 +11,11 @@ def string_to_bool(string_value):
         return True
     else:
         return False
+
+
+class ResourceSearch(BaseModel):
+    ticker1: str
+    ticker2: str
 
 
 class System(Base):
